@@ -1,0 +1,210 @@
+#include"stdio.h"
+#include "stdlib.h"
+#include "time.h"
+int information();
+int idChecking();
+int id=123;
+int sMoney;
+int aMoney;
+int randonNum;
+int loseMoney;
+int betMoney;
+int option;
+
+int askQuestion(){
+    printf("\nSorry,You lose lottery Game.\nLottery Number is %d",randonNum);
+    loseMoney=sMoney-betMoney;
+    printf("\nYour Balance is %d.",loseMoney);
+    loseMoney ++;
+    printf("\nPres 1 to plya game\nPress 2 to Quit Game\nPress any key to MoreInformation:");
+    scanf("%c",&option);
+
+    if(option==1){
+        idChecking();
+    } else if (option==2){
+        exit(1);
+
+    }else{
+        information();
+    }
+
+}
+int information(){
+
+    printf("Hello ID User : %d\n",id);
+
+}
+
+int forGetId (){
+    int newId;
+    printf("\nWait, We will messge you ......\n");
+    printf("Successfully, Enter Your New ID :");
+    scanf("%d", &newId);
+
+    if(newId==id){
+        idChecking();
+
+    }else{
+        forGetId();
+    }
+
+}
+
+int idChecking(){
+
+
+    int firstMoney;
+    int secondMoney;
+    int thirdMoney;
+    int pickNumber;
+
+
+    srand(time(NULL));
+    randonNum=(rand()%2);
+
+        printf("\nCongragulation, Our game is start !");
+
+        printf("\nSHOW YOUR MONEY : ");
+        scanf("%d",&sMoney);
+
+        printf("\nHow Much Money Will Be Bet On Pick : ");
+        scanf("%d",&betMoney);
+
+
+    while (sMoney>100){
+
+        printf("\nWhat Number Would You Pick : ");
+        scanf(" %d",&pickNumber);
+
+
+        if (randonNum == pickNumber){
+            printf("\n\nYou Win 1X Game");
+            firstMoney=betMoney*100;
+            aMoney=sMoney+firstMoney;
+            printf("\nYour Deposite Money is %d\nNow Your Balance is %d",sMoney,aMoney);
+            aMoney++;
+
+
+//        } else if (randonNum ==pickNumber){
+//            printf("\n\nWow,You Win 2X Game");
+//            secondMoney=betMoney*200;
+//            aMoney=sMoney+secondMoney;
+//            printf("\nYour Money is %d\nYour Balance is %d",secondMoney,aMoney);
+//
+//        } else if (randonNum==pickNumber){
+//            printf("\n\n##### WOW WOW WOW #####\nYou Win 3X Game");
+//            thirdMoney=betMoney*300;
+//            aMoney=sMoney+thirdMoney;
+//            printf("\nYour Money is %d\nYour Balance is %d",thirdMoney,aMoney);
+//
+        }else{
+
+            int askQuestion();
+        }
+
+    }
+//    while (randonNum != pickNumber);
+//
+//    printf("\nSorry,You lose lottery Game.\nLottery Number is %d",randonNum);
+//    loseMoney=sMoney-betMoney;
+//    printf("\nYour Balance is %d.",loseMoney);
+
+//    switch (pickNumber) {
+//        case 111:
+//            printf("You Win 1X Game");
+//            firstMoney=sMoney*100;
+//            printf("Your Money is %d",firstMoney);
+//            break;
+//
+//        case 222:
+//            printf("Wow,You Win 2X Game");
+//            secondMoney=sMoney*200;
+//            printf("Your Money is %d",secondMoney);
+//            break;
+//
+//        case 333:
+//            printf("\n##### WOW WOW WOW #####\nYou Win 3X Game");
+//            thirdMoney=sMoney*300;
+//            printf("\nYour Money is %d",thirdMoney);
+//            break;
+//
+//
+//    }
+
+}
+
+int loginPlayer(){
+
+    int pswOption;
+
+    int oldId =0;
+    printf("\nPlease Enter Your id : ");
+    scanf("%d",&oldId);
+
+    if(oldId==id){
+        idChecking();
+    }else{
+        printf("\n\nWrong Your ID!\n");
+        printf("If You Don't Remember Your Id\n");
+        printf("Press 1 For Forget ID\nPress 2 For Try Again");
+        printf("\n ");
+        scanf_s("%d",&pswOption);
+
+        if(pswOption==1){
+            forGetId();
+        }else if(pswOption==2){
+            loginPlayer();
+        }else{
+            printf("Invalid\n");
+            exit(1);
+        }
+
+    }
+}
+
+
+int newPlayer(){
+
+    int userName =0;
+    int newId = 0;
+
+    printf("\nOK,Enter your id, We will messge you ...\n");
+    scanf("%d",&newId);
+
+    if(newId == id){
+        idChecking();
+    }else{
+        printf("Wrong ID, Check Your Message.");
+        newPlayer();
+    }
+
+}
+
+int main(){
+
+    int option=0;
+
+    printf("Hello,\nWelcome to Loterry Game\n=======================\n\n");
+
+    printf("If you are an Old Player,\nTo login your Game Account. press  1  \n\n");
+    printf("If you are a New Player,\nTo create  New  Game Account Press  2  \n\n");
+
+    printf("You Can Do Whatever you like(1 or 2): ");
+    scanf("%d", &option);
+
+    if(option==1){
+        printf("\nYou can login Now!");
+        loginPlayer();
+    }else if(option==2){
+        printf("\nWait, You can create your account.");
+        newPlayer();
+    }else{
+        printf("\n\nInvalid Answer!\n");
+        main();
+    }
+
+    return 0;
+}
+
+
+
